@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -23,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Fragment> al;
     MyFragmentPagerAdapter adapter;
     ViewPager vPager;
-
     Button btnReadLater;
 
     @Override
@@ -86,31 +86,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
-    int fragPosition;
     @Override
     protected void onStop() {
         super.onStop();
-         fragPosition = vPager.getCurrentItem();
-
+        SharedPreferences mPrefs = getSharedPreferences("knowyourfacts", 0);;
+        SharedPreferences.Editor mEditor = mPrefs.edit();
+        mEditor.putInt("page", vPager.getCurrentItem()).commit();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        fragPosition = vPager.getCurrentItem();
+        SharedPreferences mPrefs = getSharedPreferences("knowyourfacts", 0);;
+        SharedPreferences.Editor mEditor = mPrefs.edit();
+        mEditor.putInt("page", vPager.getCurrentItem()).commit();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        vPager.setCurrentItem(fragPosition);
+        SharedPreferences mPrefs = getSharedPreferences("knowyourfacts", 0);;
+        vPager.setCurrentItem(mPrefs.getInt("page", 0));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        vPager.setCurrentItem(fragPosition);
+        SharedPreferences mPrefs = getSharedPreferences("knowyourfacts", 0);;
+        vPager.setCurrentItem(mPrefs.getInt("page", 0));
     }
 }
