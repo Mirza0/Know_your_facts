@@ -15,6 +15,7 @@
             android:id="@+id/tvFrag3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:text="The present population of 5 billion plus people of the world is predicted to become 15 billion by 2080." />
 
         <Button
