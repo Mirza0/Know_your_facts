@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                System.exit(0);
-            }
+             }
         });
 
     }
@@ -84,5 +84,33 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+
+    int fragPosition;
+    @Override
+    protected void onStop() {
+        super.onStop();
+         fragPosition = vPager.getCurrentItem();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        fragPosition = vPager.getCurrentItem();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        vPager.setCurrentItem(fragPosition);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        vPager.setCurrentItem(fragPosition);
     }
 }
