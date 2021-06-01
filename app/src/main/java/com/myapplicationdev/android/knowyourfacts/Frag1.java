@@ -1,5 +1,6 @@
 package com.myapplicationdev.android.knowyourfacts;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -30,6 +31,7 @@ public class Frag1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_frag1, container, false);
 
@@ -53,4 +55,5 @@ public class Frag1 extends Fragment {
 
         return view;
     }
+
 }
